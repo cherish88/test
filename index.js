@@ -72,8 +72,8 @@ app.post('/login', async (req, res) => {
 app.post('/signup', async (req, res) => {
   console.log(req.body);
   const { userId, password, birth, userEmail } = req.body;
-  await users.createUser(userId, password, birth, userEmail);
-  res.end();
+  const availableId = await users.createUser(userId, password, birth, userEmail);
+  res.send({ availableId });
 });
 
 app.get('*', (req, res) => {
